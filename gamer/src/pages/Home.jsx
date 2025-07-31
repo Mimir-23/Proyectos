@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Spline from '@splinetool/react-spline';
 import { 
   FaPlay, 
   FaStar, 
@@ -12,7 +13,12 @@ import {
   FaArrowRight,
   FaUsers,
   FaClock,
-  FaHeart
+  FaHeart,
+  FaRobot,
+  FaTrophy,
+  FaCrown,
+  FaAward,
+  FaMedal
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Container from '../components/layout/Container';
@@ -174,19 +180,21 @@ const Home = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 1.0 }}
                 >
-                  <Button size="sm" className="sm:hidden" asChild>
-                    <Link to={`/games/${currentGame.id}`}>
-                      <FaExternalLinkAlt className="h-4 w-4 mr-2" />
-                      Ver Detalles
-                    </Link>
-                  </Button>
+                  <Link 
+                    to={`/games/${currentGame.id}`}
+                    className="inline-flex items-center justify-center font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-primary text-white hover:bg-purple-600 focus:ring-primary px-4 py-2 text-sm sm:hidden"
+                  >
+                    <FaExternalLinkAlt className="h-4 w-4 mr-2" />
+                    Ver Detalles
+                  </Link>
                   
-                  <Button size="lg" className="hidden sm:inline-flex" asChild>
-                    <Link to={`/games/${currentGame.id}`}>
-                      <FaExternalLinkAlt className="h-5 w-5 mr-2" />
-                      Ver Detalles
-                    </Link>
-                  </Button>
+                  <Link 
+                    to={`/games/${currentGame.id}`}
+                    className="inline-flex items-center justify-center font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-primary text-white hover:bg-purple-600 focus:ring-primary px-8 py-4 text-lg hidden sm:inline-flex"
+                  >
+                    <FaExternalLinkAlt className="h-5 w-5 mr-2" />
+                    Ver Detalles
+                  </Link>
                   
                   <Button variant="outline" size="sm" className="sm:hidden">
                     <FaPlay className="h-4 w-4 mr-2" />
@@ -227,12 +235,155 @@ const Home = () => {
             />
 
             <div className="text-center mt-8">
-              <Button variant="outline" size="lg" asChild>
-                <Link to="/popular">
-                  Ver Todos los Populares
-                </Link>
-              </Button>
+              <Link 
+                to="/popular"
+                className="inline-flex items-center justify-center font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 border-2 border-primary text-primary hover:bg-primary hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black px-8 py-4 text-lg"
+              >
+                Ver Todos los Populares
+              </Link>
             </div>
+          </motion.div>
+        </Container>
+      </section>
+
+      {/* Robot Mascot Section */}
+      <section className="py-16">
+        <Container>
+          <motion.div
+            className="grid lg:grid-cols-2 gap-8 items-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Text Content */}
+            <div className="order-2 lg:order-1 space-y-6">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
+                <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium mb-4">
+                  <FaRobot className="h-3 w-3" />
+                  <span>Te presentamos a</span>
+                </div>
+                
+                <h2 className="text-3xl md:text-4xl font-bold font-outfit text-gray-900 dark:text-white mb-4">
+                  ¡Hola! Soy
+                  <span className="text-primary"> GameBot</span>
+                </h2>
+                
+                <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                  La mascota oficial de este sitio. Me encanta ayudar a los gamers a 
+                  descubrir nuevos juegos, explorar géneros increíbles y encontrar 
+                  experiencias gaming únicas. ¡Vamos a explorar juntos!
+                </p>
+              </motion.div>
+
+              <motion.div
+                className="grid grid-cols-2 gap-4"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <FaSearch className="h-4 w-4 text-primary" />
+                    <h3 className="font-medium text-gray-900 dark:text-white text-sm">Búsqueda</h3>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-400 text-xs">
+                    Encuentra juegos específicos
+                  </p>
+                </div>
+
+                <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <FaStar className="h-4 w-4 text-green-500" />
+                    <h3 className="font-medium text-gray-900 dark:text-white text-sm">Recomendaciones</h3>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-400 text-xs">
+                    Descubre nuevos favoritos
+                  </p>
+                </div>
+
+                <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <FaTh className="h-4 w-4 text-blue-500" />
+                    <h3 className="font-medium text-gray-900 dark:text-white text-sm">Géneros</h3>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-400 text-xs">
+                    Explora por categorías
+                  </p>
+                </div>
+
+                <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <FaGamepad className="h-4 w-4 text-purple-500" />
+                    <h3 className="font-medium text-gray-900 dark:text-white text-sm">Detalles</h3>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-400 text-xs">
+                    Información completa
+                  </p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="flex flex-col sm:flex-row gap-3"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <Link 
+                  to="/search"
+                  className="inline-flex items-center justify-center font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-primary text-white hover:bg-purple-600 focus:ring-primary px-6 py-3 text-base group"
+                >
+                  <FaSearch className="h-4 w-4 mr-2" />
+                  Buscar Juegos
+                </Link>
+                
+                <Link 
+                  to="/genres"
+                  className="inline-flex items-center justify-center font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 border-2 border-primary text-primary hover:bg-primary hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black px-6 py-3 text-base"
+                >
+                  <FaTh className="h-4 w-4 mr-2" />
+                  Ver Géneros
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Robot 3D Model */}
+            <motion.div
+              className="order-1 lg:order-2 relative"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <div className="relative h-[320px] md:h-[400px] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border border-gray-200 dark:border-gray-700">
+                {/* Spline 3D Robot */}
+                <div className="relative z-10 w-full h-full">
+                  <Spline
+                    scene="https://prod.spline.design/4vwjJtEiQB6zylxC/scene.splinecode"
+                    style={{ width: '100%', height: '100%' }}
+                  />
+                </div>
+
+                {/* Subtle interaction hint */}
+                <div className="absolute bottom-3 left-3 right-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg p-3 border border-gray-200/50 dark:border-gray-700/50">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+                      <FaRobot className="h-3 w-3 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-medium text-gray-900 dark:text-white">
+                        ¡Hola! Soy GameBot
+                      </p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">
+                        Haz clic para interactuar conmigo
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </Container>
       </section>
@@ -261,157 +412,193 @@ const Home = () => {
             />
 
             <div className="text-center">
-              <Button variant="outline" size="lg" asChild>
-                <Link to="/new-releases">
-                  Ver Todos los Lanzamientos
-                </Link>
-              </Button>
+              <Link 
+                to="/new-releases"
+                className="inline-flex items-center justify-center font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 border-2 border-primary text-primary hover:bg-primary hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black px-8 py-4 text-lg"
+              >
+                Ver Todos los Lanzamientos
+              </Link>
             </div>
           </motion.div>
         </Container>
       </section>
 
-      {/* Minimalist CTA Section */}
-      <section className="py-24">
+      {/* GOTY Section - Game of the Year Awards */}
+      <section className="py-16 bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 dark:from-amber-900/10 dark:via-yellow-900/10 dark:to-orange-900/10">
         <Container>
           <motion.div
-            className="max-w-4xl mx-auto text-center"
+            className="text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Badge */}
             <motion.div
-              className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-8"
+              className="inline-flex items-center space-x-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 px-4 py-2 rounded-full text-sm font-medium mb-6"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <FaGamepad className="h-4 w-4" />
-              <span>Encuentra tu próximo juego favorito</span>
+              <FaTrophy className="h-4 w-4" />
+              <span>Premios Game of the Year</span>
             </motion.div>
 
-            {/* Main Heading */}
             <motion.h2
-              className="text-4xl md:text-5xl lg:text-6xl font-bold font-outfit text-gray-900 dark:text-white mb-6"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold font-outfit text-gray-900 dark:text-white mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              Explora el mundo de los
-              <motion.span 
-                className="block text-primary"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              >
-                videojuegos
-              </motion.span>
+              Los <span className="text-amber-600 dark:text-amber-400">GOTY</span> de los últimos 
+              <span className="text-amber-600 dark:text-amber-400"> 5 años</span>
             </motion.h2>
 
-            {/* Description */}
             <motion.p
-              className="text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed"
+              className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Descubre, explora y encuentra información detallada sobre miles de juegos. 
-              Tu próxima aventura te está esperando.
+              Los juegos que han marcado historia y se han alzado con el prestigioso premio al Juego del Año
             </motion.p>
+          </motion.div>
 
-            {/* Action Buttons */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+          {/* GOTY Timeline */}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            {[
+              { 
+                year: "2023",
+                title: "Baldur's Gate 3",
+                genre: "RPG",
+                description: "La obra maestra de los RPG modernos",
+                icon: FaCrown,
+                bgColor: "bg-purple-50 dark:bg-purple-900/20",
+                textColor: "text-purple-600 dark:text-purple-400",
+                gameId: "324997",
+                image: "https://media.rawg.io/media/games/699/69907ecf13f172e9e144069769c3be73.jpg"
+              },
+              { 
+                year: "2022",
+                title: "Elden Ring",
+                genre: "Action RPG",
+                description: "FromSoftware redefine el género",
+                icon: FaTrophy,
+                bgColor: "bg-yellow-50 dark:bg-yellow-900/20",
+                textColor: "text-yellow-600 dark:text-yellow-400",
+                gameId: "612020",
+                image: "https://media.rawg.io/media/games/5ec/5ecac5cb026ec26a56efcc546364e348.jpg"
+              },
+              { 
+                year: "2021",
+                title: "It Takes Two",
+                genre: "Co-op",
+                description: "Cooperación llevada a la perfección",
+                icon: FaAward,
+                bgColor: "bg-pink-50 dark:bg-pink-900/20",
+                textColor: "text-pink-600 dark:text-pink-400",
+                gameId: "455597",
+                image: "https://static1.thegamerimages.com/wordpress/wp-content/uploads/2021/02/It-Takes-Two-Trailer.jpg"
+              },
+              { 
+                year: "2020",
+                title: "The Last of Us Part II",
+                genre: "Action",
+                description: "Narrativa cinematográfica excepcional",
+                icon: FaMedal,
+                bgColor: "bg-green-50 dark:bg-green-900/20",
+                textColor: "text-green-600 dark:text-green-400",
+                gameId: "51325",
+                image: "https://media.rawg.io/media/games/909/909974d1c7863c2027241e265fe7011f.jpg"
+              },
+              { 
+                year: "2019",
+                title: "Sekiro: Shadows Die Twice",
+                genre: "Action",
+                description: "La obra maestra ninja de FromSoftware",
+                icon: FaStar,
+                bgColor: "bg-red-50 dark:bg-red-900/20",
+                textColor: "text-red-600 dark:text-red-400",
+                gameId: "50734",
+                image: "https://media.rawg.io/media/games/67f/67f62d1f062a6164f57575e0604ee9f6.jpg"
+              }
+            ].map((goty, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
+                whileHover={{ scale: 1.03, y: -6 }}
+                className="group cursor-pointer"
+              >
                 <Link 
-                  to="/genres"
-                  className="group inline-flex items-center justify-center space-x-3 bg-primary text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-primary/90"
+                  to={`/games/${goty.gameId}`}
+                  className={`group block rounded-2xl ${goty.bgColor} border-2 border-amber-200 dark:border-amber-800 hover:border-amber-300 dark:hover:border-amber-600 transition-all duration-300 hover:shadow-xl relative overflow-hidden`}
                 >
-                  <FaTh className="h-5 w-5" />
-                  <span>Explorar Géneros</span>
-                  <motion.div
-                    className="overflow-hidden"
-                    initial={{ width: 0 }}
-                    whileHover={{ width: "auto" }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <FaArrowRight className="h-4 w-4 ml-1" />
-                  </motion.div>
+                  {/* Game Image Background */}
+                  <div className="relative h-48 overflow-hidden rounded-t-2xl">
+                    <img 
+                      src={goty.image}
+                      alt={goty.title}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    
+                    {/* Award Badge on Image */}
+                    <div className="absolute top-4 left-4 flex items-center space-x-2 bg-amber-500 text-white px-3 py-1 rounded-full">
+                      <goty.icon className="h-4 w-4" />
+                      <span className="text-sm font-bold">{goty.year}</span>
+                    </div>
+                    
+                    {/* GOTY Badge */}
+                    <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-400 to-yellow-500 text-black px-3 py-1 rounded-full">
+                      <span className="text-xs font-bold">GOTY</span>
+                    </div>
+                  </div>
+
+                  {/* Content Section */}
+                  <div className="p-6 space-y-4">
+                    {/* Game Info */}
+                    <div>
+                      <h3 className={`text-xl font-bold ${goty.textColor} mb-2 group-hover:scale-105 transition-transform duration-300`}>
+                        {goty.title}
+                      </h3>
+                      <span className="inline-block px-3 py-1 bg-white/80 dark:bg-gray-800/80 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300 mb-3">
+                        {goty.genre}
+                      </span>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                        {goty.description}
+                      </p>
+                    </div>
+                    
+                    {/* Hover indicator */}
+                    <div className={`inline-flex items-center space-x-2 ${goty.textColor} text-sm font-medium opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300`}>
+                      <span>Ver detalles</span>
+                      <FaArrowRight className="h-3 w-3" />
+                    </div>
+                  </div>
+                  
+                  {/* Background shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Link>
               </motion.div>
+            ))}
+          </motion.div>
 
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <Link 
-                  to="/search"
-                  className="group inline-flex items-center justify-center space-x-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-2 border-gray-200 dark:border-gray-700 px-8 py-4 rounded-2xl font-semibold text-lg hover:border-primary hover:text-primary transition-all duration-300"
-                >
-                  <FaSearch className="h-5 w-5" />
-                  <span>Buscar Juegos</span>
-                </Link>
-              </motion.div>
-            </motion.div>
-
-            {/* Stats Grid */}
-            <motion.div
-              className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 border-t border-gray-200 dark:border-gray-700"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              {[
-                { 
-                  icon: FaGamepad, 
-                  number: "10,000+", 
-                  label: "Juegos",
-                  color: "text-blue-500" 
-                },
-                { 
-                  icon: FaUsers, 
-                  number: "50,000+", 
-                  label: "Reseñas",
-                  color: "text-green-500" 
-                },
-                { 
-                  icon: FaTh, 
-                  number: "100+", 
-                  label: "Géneros",
-                  color: "text-purple-500" 
-                },
-                { 
-                  icon: FaClock, 
-                  number: "24/7", 
-                  label: "Disponible",
-                  color: "text-orange-500" 
-                }
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  className="group text-center p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-300 cursor-default"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.9 + index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 ${stat.color} mb-3 group-hover:scale-110 transition-transform duration-300`}>
-                    <stat.icon className="h-6 w-6" />
-                  </div>
-                  <div className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1">
-                    {stat.number}
-                  </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* Additional CTA */}
-
+          {/* Call to Action */}
+          <motion.div
+            className="mt-12 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+          >
+            
+            <p className="text-gray-600 dark:text-gray-400 text-sm mt-4">
+              Descubre por qué estos juegos han marcado la historia del gaming
+            </p>
           </motion.div>
         </Container>
       </section>
